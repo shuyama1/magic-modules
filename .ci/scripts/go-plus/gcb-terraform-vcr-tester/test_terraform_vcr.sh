@@ -252,7 +252,7 @@ if [[ -n $FAILED_TESTS_PATTERN ]]; then
     # Rerun passed tests in REPLAYING mode 3 times to catch issues
     export VCR_MODE=REPLAYING
     count=3
-    parallel --jobs 16 TF_LOG=DEBUG TF_LOG_PATH_MASK=$local_path/testlog/replaying_after_recording/%s.log TF_ACC=1 TF_SCHEMA_PANIC_ON_ERROR=1 go test {1} -parallel 1 -count=$count -v -run="{2}$" -timeout 480m -ldflags="-X=github.com/hashicorp/terraform-provider-google-beta/version.ProviderVersion=acc" ">>" testlog/replaying_build_after_recording/{2}_replaying_test.log ::: $GOOGLE_TEST_DIRECTORY ::: $RECORDING_PASSED_TEST_LIST
+    parallel --timeout 20000 --jobs 16 TF_LOG=DEBUG TF_LOG_PATH_MASK=$local_path/testlog/replaying_after_recording/%s.log TF_ACC=1 TF_SCHEMA_PANIC_ON_ERROR=1 go test {1} -parallel 1 -count=$count -v -run="{2}$" -timeout 480m -ldflags="-X=github.com/hashicorp/terraform-provider-google-beta/version.ProviderVersion=acc" ">>" testlog/replaying_build_after_recording/{2}_replaying_test.log ::: $GOOGLE_TEST_DIRECTORY ::: $RECORDING_PASSED_TEST_LIST
 
     test_exit_code=$(($test_exit_code || $?))
 
