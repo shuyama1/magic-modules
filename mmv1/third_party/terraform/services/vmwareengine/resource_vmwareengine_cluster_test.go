@@ -55,7 +55,7 @@ func TestAccVmwareengineCluster_vmwareEngineClusterUpdate(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				// Verifies Cluster is created and Datastore is mounted with create cluster operation.
-				Config: testVmwareEngineClusterConfig_DatastoreMount(t, context, 3, true),
+				Config: testVmwareEngineClusterConfig_DatastoreMount(t, context, 3, false),
 				Check: resource.ComposeTestCheckFunc(
 					acctest.CheckDataSourceStateMatchesResourceState("data.google_vmwareengine_cluster.ds_vmw_engine_ext_cluster", "google_vmwareengine_cluster.vmw-engine-ext-cluster"),
 				),
@@ -69,7 +69,7 @@ func TestAccVmwareengineCluster_vmwareEngineClusterUpdate(t *testing.T) {
 			},
 			{
 				// Update cluster to do two operations a) expand cluster and b) unmount datastore
-				Config: testVmwareEngineClusterConfig_DatastoreUnmount(t, context, 4, true),
+				Config: testVmwareEngineClusterConfig_DatastoreUnmount(t, context, 4, false),
 			},
 			{
 				ResourceName:      "google_vmwareengine_cluster.vmw-engine-ext-cluster",
@@ -80,7 +80,7 @@ func TestAccVmwareengineCluster_vmwareEngineClusterUpdate(t *testing.T) {
 			},
 			{
 				// Update cluster to do two operations a) shrink clusster and b) mount datastore
-				Config: testVmwareEngineClusterConfig_DatastoreMount(t, context, 3, true),
+				Config: testVmwareEngineClusterConfig_DatastoreMount(t, context, 3, false),
 			},
 			{
 				ResourceName:      "google_vmwareengine_cluster.vmw-engine-ext-cluster",
