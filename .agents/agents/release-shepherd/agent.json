@@ -1,0 +1,6 @@
+{
+  "name": "release-shepherd",
+  "configPath": {
+    "relativePathToConfig": "config.yaml"
+  }
+}
