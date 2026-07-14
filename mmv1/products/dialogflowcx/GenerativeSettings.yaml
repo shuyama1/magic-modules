@@ -68,11 +68,13 @@ properties:
     custom_flatten: templates/terraform/custom_flatten/name_from_self_link.tmpl
   - name: fallbackSettings
     type: NestedObject
+    send_empty_value: true
     description: |
       Settings for Generative Fallback.
     properties:
       - name: selectedPrompt
         type: String
+        send_empty_value: true
         description: |
           Display name of the selected prompt.
       - name: promptTemplates
@@ -99,17 +101,20 @@ properties:
                 If the flag is true, the prompt is frozen and cannot be modified by users.
   - name: generativeSafetySettings
     type: NestedObject
+    send_empty_value: true
     description: |
       Settings for Generative Safety.
     diff_suppress_func: tpgresource.EmptyOrUnsetBlockDiffSuppress
     properties:
       - name: defaultBannedPhraseMatchStrategy
         type: String
+        send_empty_value: true
         description: |
           Optional. Default phrase match strategy for banned phrases.
           See [PhraseMatchStrategy](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/GenerativeSettings#phrasematchstrategy) for valid values.
       - name: bannedPhrases
         type: Array
+        send_empty_value: true
         description: |
           Banned phrases for generated text.
         item_type:
@@ -127,31 +132,38 @@ properties:
               required: true
   - name: knowledgeConnectorSettings
     type: NestedObject
+    send_empty_value: true
     description: |
       Settings for knowledge connector.
     properties:
       - name: business
         type: String
+        send_empty_value: true
         description: |
           Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.
       - name: agent
         type: String
+        send_empty_value: true
         description: |
           Name of the virtual agent. Used for LLM prompt. Can be left empty.
       - name: agentIdentity
         type: String
+        send_empty_value: true
         description: |
           Identity of the agent, e.g. "virtual agent", "AI assistant".
       - name: businessDescription
         type: String
+        send_empty_value: true
         description: |
-          Company description, used for LLM prompt, e.g. "a family company selling freshly roasted coffee beans".``
+          Company description, used for LLM prompt, e.g. "a family company selling freshly roasted coffee beans".
       - name: agentScope
         type: String
+        send_empty_value: true
         description: |
           Agent scope, e.g. "Example company website", "internal Example company website for employees", "manual of car owner".
       - name: disableDataStoreFallback
         type: Boolean
+        send_empty_value: true
         description: |
           Whether to disable fallback to Data Store search results (in case the LLM couldn't pick a proper answer). Per default the feature is enabled.
   - name: languageCode
@@ -161,14 +173,18 @@ properties:
     required: true
   - name: llmModelSettings
     type: NestedObject
+    send_empty_value: true
     description: |
       LLM model settings.
     properties:
       - name: model
         type: String
+        send_empty_value: true
         description: |
           The selected LLM model.
       - name: promptText
         type: String
+        send_empty_value: true
         description: |
           The custom prompt to use.
+
